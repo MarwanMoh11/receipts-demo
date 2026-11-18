@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Dinner Decided</title>
+<style>
+:root{--bg:#fbfaf7;--ink:#14161a;--muted:#5d6370;--line:#e4e1d8;--accent:#1d4ed8;--accent-ink:#fff;--card:#fff;--warn:#8a5a00;--warn-bg:#fff4d6}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif}
+a{color:var(--accent)}.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{font-weight:750;letter-spacing:-.01em;font-size:19px}.brand span{color:var(--accent)}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted);background:#fff}
+.hero{padding:56px 0 28px}.hero h1{font-size:clamp(34px,5vw,54px);line-height:1.06;letter-spacing:-.03em;margin:0 0 18px;max-width:820px}
+.hero p.sub{font-size:20px;color:#333a45;max-width:720px;margin:0 0 10px}.hero p.aud{color:var(--muted);margin:0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+section{padding:30px 0}h2{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.problem{font-size:17px}.step b{display:block;font-size:13px;color:var(--accent);margin-bottom:6px}
+.price{display:flex;flex-direction:column;gap:12px;position:relative}.price.hl{border:2px solid var(--accent);box-shadow:0 10px 30px rgba(29,78,216,.12)}
+.price .tag{position:absolute;top:-11px;left:18px;background:var(--accent);color:#fff;font-size:11px;padding:2px 8px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
+.price h3{margin:0;font-size:18px}.amount{font-size:40px;font-weight:760;letter-spacing:-.03em}.amount small{font-size:14px;color:var(--muted);font-weight:500}
+.price ul{margin:0;padding-left:18px;color:#333a45;flex:1}.price li{margin:4px 0}
+.btn{display:inline-block;width:100%;border:0;border-radius:10px;padding:12px 16px;font-weight:650;font-size:15px;cursor:pointer;background:var(--ink);color:#fff;text-align:center;text-decoration:none}
+.price.hl .btn{background:var(--accent)}.btn:hover{filter:brightness(1.15)}
+.fine{color:var(--muted);font-size:13px;padding:26px 0 50px;border-top:1px solid var(--line);margin-top:20px}
+.testbar{position:sticky;top:0;z-index:5;background:#111;color:#ffd166;font:600 12px/1.4 ui-monospace,Menlo,monospace;padding:8px 16px;text-align:center;letter-spacing:.04em}
+.previewbar{background:var(--warn-bg);color:var(--warn)}
+.mockbar{background:#eef2ff;color:#1e3a8a;font:600 12px/1.4 ui-monospace,Menlo,monospace;padding:6px 16px;text-align:center}
+</style></head><body><div style="background:#2B1F31;color:#EDF0E9;font:14px/1.45 system-ui,sans-serif;padding:9px 16px;text-align:center"><b>Read-only snapshot</b> of a page Receipts generated. Forms and buttons do nothing here.</div>
+<script>
+(function () {
+  const RO = "Read-only snapshot: this copy on GitHub Pages cannot start or change runs. Run Receipts locally with docker compose up to try it.";
+  const ex = location.pathname.replace(/\.html$/, ".example.json");
+  const real = window.fetch.bind(window);
+  window.fetch = async (input, init) => {
+    const u = typeof input === "string" ? input : input.url;
+    if (/\/generate/.test(u)) {
+      if (/preview=1/.test(u)) return real(ex);
+      return new Response(JSON.stringify({ detail: RO }), { headers: { "Content-Type": "application/json" } });
+    }
+    return real(input, init);
+  };
+  document.addEventListener("submit", (e) => {
+    if (e.target.id === "genform") return;
+    e.preventDefault(); alert(RO);
+  }, true);
+})();
+</script>
+<div class="mockbar">MOCKED: this page is served on this machine only; public publishing is MOCKED. Nothing is charged.</div>
+<div class="wrap"><div class="nav"><div class="brand">Dinner Decided<span>.</span></div><div class="pill">Pre-launch</div></div>
+<div class="hero"><h1>Stop the nightly scramble for dinner.</h1><p class="sub">A simple weekly plan and shopping list for busy single parents with young kids. No ads, no data stored.</p><p class="aud">For single working mothers with children ages 3-8.</p></div>
+<section><h2>Why it's hard</h2><div class="grid3"><div class="card problem">You spend significant mental energy deciding what to cook each night. (ASSUMPTION)</div><div class="card problem">Planning takes too long and you often rely on takeout or simple snacks instead. (ASSUMPTION)</div></div></section>
+<section><h2>How it works</h2><div class="grid3"><div class="card step"><b>Step 1</b>Enter your preferences into short text fields.</div><div class="card step"><b>Step 2</b>Receive a weekly dinner plan and a single shopping list.</div><div class="card step"><b>Step 3</b>Copy the result to use immediately.</div></div></section>
+<section id="pricing"><h2>Pricing</h2><div class="card" style="margin-bottom:14px"><b>Every plan includes the same product:</b><ul><li>Weekly dinner plan</li><li>Single shopping list</li></ul><p class="aud" style="color:var(--muted);font-size:13px;margin:0">The plans differ only in price. Pick the price you would really pay.</p></div><div class="grid3"><div class="card price hl"><h3>Monthly Plan</h3><div class="amount">$10 <small>monthly</small></div><form method="post" action="/p/dinner-decided-1/reserve"><input type="hidden" name="tier" value="starter"><input type="hidden" name="src" value="direct"><button class="btn" type="submit">Register interest</button></form><p class="aud" style="color:var(--muted);font-size:13px;margin:0">Nothing is charged.</p></div><div class="card price"><h3>Yearly Plan</h3><div class="amount">$100 <small>yearly</small></div><form method="post" action="/p/dinner-decided-1/reserve"><input type="hidden" name="tier" value="annual"><input type="hidden" name="src" value="direct"><button class="btn" type="submit">Register interest</button></form><p class="aud" style="color:var(--muted);font-size:13px;margin:0">Nothing is charged.</p></div></div></section>
+<div class="fine">Dinner Decided is not available yet. Registering interest records it at that price; nothing is charged and
+you won't be asked for payment details.</div></div></body></html>

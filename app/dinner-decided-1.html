@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dinner Decided</title><style>
+:root{--bg:#fbfaf7;--ink:#14161a;--muted:#5d6370;--line:#e4e1d8;--accent:#1d4ed8;--accent-ink:#fff;--card:#fff;--warn:#8a5a00;--warn-bg:#fff4d6}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif}
+a{color:var(--accent)}.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{font-weight:750;letter-spacing:-.01em;font-size:19px}.brand span{color:var(--accent)}
+.pill{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted);background:#fff}
+.hero{padding:56px 0 28px}.hero h1{font-size:clamp(34px,5vw,54px);line-height:1.06;letter-spacing:-.03em;margin:0 0 18px;max-width:820px}
+.hero p.sub{font-size:20px;color:#333a45;max-width:720px;margin:0 0 10px}.hero p.aud{color:var(--muted);margin:0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+section{padding:30px 0}h2{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.problem{font-size:17px}.step b{display:block;font-size:13px;color:var(--accent);margin-bottom:6px}
+.price{display:flex;flex-direction:column;gap:12px;position:relative}.price.hl{border:2px solid var(--accent);box-shadow:0 10px 30px rgba(29,78,216,.12)}
+.price .tag{position:absolute;top:-11px;left:18px;background:var(--accent);color:#fff;font-size:11px;padding:2px 8px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
+.price h3{margin:0;font-size:18px}.amount{font-size:40px;font-weight:760;letter-spacing:-.03em}.amount small{font-size:14px;color:var(--muted);font-weight:500}
+.price ul{margin:0;padding-left:18px;color:#333a45;flex:1}.price li{margin:4px 0}
+.btn{display:inline-block;width:100%;border:0;border-radius:10px;padding:12px 16px;font-weight:650;font-size:15px;cursor:pointer;background:var(--ink);color:#fff;text-align:center;text-decoration:none}
+.price.hl .btn{background:var(--accent)}.btn:hover{filter:brightness(1.15)}
+.fine{color:var(--muted);font-size:13px;padding:26px 0 50px;border-top:1px solid var(--line);margin-top:20px}
+.testbar{position:sticky;top:0;z-index:5;background:#111;color:#ffd166;font:600 12px/1.4 ui-monospace,Menlo,monospace;padding:8px 16px;text-align:center;letter-spacing:.04em}
+.previewbar{background:var(--warn-bg);color:var(--warn)}
+.mockbar{background:#eef2ff;color:#1e3a8a;font:600 12px/1.4 ui-monospace,Menlo,monospace;padding:6px 16px;text-align:center}
+
+.tool{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:22px;align-items:start}
+@media (max-width:820px){.tool{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 4px}label small{display:block;font-weight:400;color:var(--muted)}
+.field{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+.field span{padding:0 10px;color:var(--muted);font-size:14px}.field input{flex:1;border:0;padding:10px;font:inherit;min-width:0;background:transparent}
+.out{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.out:last-child{border-bottom:0}.out .v{font-weight:720;font-size:22px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.out small{display:block;color:var(--muted)}
+.extras{margin-top:16px;border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card)}
+.extras ul{margin:8px 0 14px;padding-left:18px}.muted{color:var(--muted)}
+
+textarea.in,input.in,select.in{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:#fff}
+textarea.in{min-height:150px;resize:vertical}.count{font-size:12px;color:var(--muted);text-align:right}
+.sec{border-bottom:1px solid var(--line);padding:14px 0}.sec:last-child{border-bottom:0}.sec h3{margin:0 0 6px;font-size:16px}
+.sec ul{margin:6px 0 0;padding-left:20px}.sec li{margin:4px 0}
+.err{background:#fde8e6;color:#9b1c13;border-radius:10px;padding:10px;margin-bottom:10px}
+.copyrow{text-align:right}.copybtn{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:3px 9px;cursor:pointer;margin-left:6px}
+.copybtn.copied{background:#e6f4ea;border-color:#9ccfa8}
+</style></head><body><div style="background:#2B1F31;color:#EDF0E9;font:14px/1.45 system-ui,sans-serif;padding:9px 16px;text-align:center"><b>Read-only snapshot</b> of a page Receipts generated. Forms and buttons do nothing here.</div>
+<script>
+(function () {
+  const RO = "Read-only snapshot: this copy on GitHub Pages cannot start or change runs. Run Receipts locally with docker compose up to try it.";
+  const ex = location.pathname.replace(/\.html$/, ".example.json");
+  const real = window.fetch.bind(window);
+  window.fetch = async (input, init) => {
+    const u = typeof input === "string" ? input : input.url;
+    if (/\/generate/.test(u)) {
+      if (/preview=1/.test(u)) return real(ex);
+      return new Response(JSON.stringify({ detail: RO }), { headers: { "Content-Type": "application/json" } });
+    }
+    return real(input, init);
+  };
+  document.addEventListener("submit", (e) => {
+    if (e.target.id === "genform") return;
+    e.preventDefault(); alert(RO);
+  }, true);
+})();
+</script>
+<div class="mockbar">MOCKED: this page is served on this machine only; public publishing is MOCKED. Nothing is charged.</div><div class="wrap"><div class="nav"><div class="brand">Dinner Decided<span>.</span></div><div class="pill">Free to use</div></div><div class="hero" style="padding:20px 0 22px"><h1 style="font-size:clamp(28px,4vw,40px);margin-bottom:10px">Weekly dinner plans and shopping lists for busy working parents.</h1><p class="sub" style="font-size:18px">Enter your dietary needs to get a 7-day meal plan and ingredients list.</p></div>
+<div class="tool"><form class="card" id="genform" onsubmit="return false"><label for="page_url">Public link *<small>A link to a public page; this server fetches it.</small></label><input class="in" type="url" inputmode="url" placeholder="https://" id="page_url" name="page_url" maxlength="500"><div class="count">This server fetches the public page at this link and reads its text.</div><label for="dietary_prefs">Dietary preferences or constraints (e.g., allergies, disliked foods)<small>List any allergies, dislikes, or dietary restrictions for your family.</small></label><input class="in" type="text" id="dietary_prefs" name="dietary_prefs" maxlength="300">
+<button class="btn" id="go" type="button" style="margin-top:16px">Generate</button>
+<p class="muted" style="font-size:12px;margin:8px 0 0">Your text is sent to an AI model to produce the result. Don't paste anything private.</p></form>
+<p class="muted facts" id="facts" style="font-size:12px;margin:8px 0 0">Runs on this server with an open-weight model. Links you give are fetched by this server from the public web. Your input and the result are not stored. MOCKED: no payment and no account.</p>
+<div><div class="card" id="result"><p class="muted">Loading the example…</p></div><div class="extras"><b>Planned extras (not built yet)</b><p class="muted" style="font-size:13px;margin:6px 0 0">Everything above is free to use in this version. These are ideas for a possible later version; none of them is built.</p><p class="muted">None listed yet.</p><p style="margin:0 0 6px">Would you pay $10 <span class="muted">(monthly)</span> for a version with these extras?</p><form method="post" action="/app/dinner-decided-1/access"><input type="hidden" name="src" value="direct"><button class="btn" type="submit">Reserve interest</button></form><p class="muted" style="font-size:13px;margin:8px 0 0">MOCKED: no payment is taken and no account is created. Your click is recorded as interest only.</p></div></div></div>
+<div class="fine">Built by Receipts from a cited, founder-approved spec. There is no payment step.</div></div>
+<script>
+const META = {"slug": "dinner-decided-1", "preview": false};
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"})[c]);
+function render(data) {
+  const box = document.getElementById("result");
+  if (data.detail) { box.innerHTML = `<div class="err">${esc(data.detail)}</div>`; return; }
+  let html = data.example ? `<p class="muted" style="margin-top:0">${esc(data.note || "Example output")}</p>` : "";
+  for (const f of (data.fetched || [])) html += `<p class="muted fetched" style="margin-top:0">Fetched: ${esc(f.summary || f.title)}</p>`;
+  if ((data.trimmed || []).length) html += `<p class="muted" style="margin-top:0">Shortened to the word limit: ${esc(data.trimmed.join("; "))}</p>`;
+  LAST = data.sections;
+  html += `<div class="copyrow"><button class="copybtn" type="button" data-copy="all">Copy all</button></div>`;
+  data.sections.forEach((s, i) => {
+    const body = s.kind === "list" ? `<ul>${(s.value || []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p>${esc(s.value || "")}</p>`;
+    html += `<div class="sec"><h3>${esc(s.label)} <button class="copybtn" type="button" data-copy="${i}">Copy</button></h3><div class="body">${body}</div></div>`;
+  });
+  box.innerHTML = html;
+}
+let LAST = [];
+const asText = (s) => s.kind === "list" ? (s.value || []).map((x) => "- " + x).join("\n") : String(s.value || "");
+async function copyText(text) {
+  try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; } } catch (err) {}
+  const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select(); let ok = false;
+  try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  document.body.removeChild(ta); return ok;
+}
+document.getElementById("result").addEventListener("click", async (ev) => {
+  const b = ev.target.closest("[data-copy]"); if (!b) return;
+  const k = b.dataset.copy;
+  const text = k === "all" ? LAST.map((s) => s.label + "\n" + asText(s)).join("\n\n") : asText(LAST[Number(k)]);
+  const label = b.textContent; const ok = await copyText(text);
+  b.textContent = ok ? "Copied" : "Select and copy by hand"; b.classList.toggle("copied", ok);
+  setTimeout(() => { b.textContent = label; b.classList.remove("copied"); }, 1600);
+});
+async function call(example) {
+  const inputs = {};
+  document.querySelectorAll("#genform [name]").forEach((i) => inputs[i.name] = i.type === "checkbox" ? i.checked : i.value);
+  const r = await fetch(`/app/${META.slug}/generate` + (example || META.preview ? "?preview=1" : ""), {method: "POST", headers: Object.assign({"Content-Type": "application/json"}, META.preview ? {"X-Receipts-Founder": "1"} : {}), body: JSON.stringify({inputs})});
+  render(await r.json());
+}
+document.querySelectorAll("textarea.in").forEach((t) => t.addEventListener("input", () => {
+  const c = document.querySelector(`.count[data-for="${t.id}"]`); if (c) c.textContent = `${t.value.length} / ${t.maxLength}`; }));
+document.getElementById("go").addEventListener("click", async () => {
+  const b = document.getElementById("go"); b.disabled = true; b.textContent = "Generating…";
+  document.getElementById("result").innerHTML = '<p class="muted">Working on it — this can take 10–30 seconds.</p>';
+  try { await call(false); } finally { b.disabled = false; b.textContent = "Generate"; }
+});
+call(true);
+</script></body></html>

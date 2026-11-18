@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dinner Decided</title><style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f7f7f5;color:#1d1d1b}
+.mock{background:#fff3cd;border-bottom:2px solid #b8860b;padding:12px 16px;font-weight:700;text-align:center}
+main{max-width:720px;margin:0 auto;padding:24px 16px}h1{font-size:1.9rem;margin:.4em 0}
+section{background:#fff;border:1px solid #e2e2dc;border-radius:8px;padding:16px;margin:16px 0}
+ul{padding-left:1.2em}.tier{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #eee}
+button{background:#1d4e89;color:#fff;border:0;border-radius:6px;padding:10px 18px;font-size:1rem;cursor:pointer}
+.note{color:#555;font-size:.9rem}</style></head>
+<body><div style="background:#2B1F31;color:#EDF0E9;font:14px/1.45 system-ui,sans-serif;padding:9px 16px;text-align:center"><b>Read-only snapshot</b> of a page Receipts generated. Forms and buttons do nothing here.</div>
+<script>
+(function () {
+  const RO = "Read-only snapshot: this copy on GitHub Pages cannot start or change runs. Run Receipts locally with docker compose up to try it.";
+  const ex = location.pathname.replace(/\.html$/, ".example.json");
+  const real = window.fetch.bind(window);
+  window.fetch = async (input, init) => {
+    const u = typeof input === "string" ? input : input.url;
+    if (/\/generate/.test(u)) {
+      if (/preview=1/.test(u)) return real(ex);
+      return new Response(JSON.stringify({ detail: RO }), { headers: { "Content-Type": "application/json" } });
+    }
+    return real(input, init);
+  };
+  document.addEventListener("submit", (e) => {
+    if (e.target.id === "genform") return;
+    e.preventDefault(); alert(RO);
+  }, true);
+})();
+</script>
+<div style="background:#eef2ff;color:#1e3a8a;font:600 12px/1.4 monospace;padding:6px 16px;text-align:center">Store page served on this machine only. Public listing and payments are MOCKED: nothing is charged and no order is real.</div>
+<div class="mock" role="status">MOCKED: this page is served locally and is not published</div>
+<main>
+<p class="note">Dinner Decided</p>
+<h1>Weekly dinner plans and shopping lists for busy parents</h1>
+<section><h2>What it does</h2><p>Dinner Decided takes a public web page link and family dietary preferences to generate a seven-day dinner schedule and an aggregated ingredient list.</p></section>
+<section><h2>Who it is for</h2><p>This tool helps single working mothers with young children create simple weekly meal plans without storing their personal data.</p></section>
+<section><h2>What it does not do</h2><ul><li>It does not promise specific cooking results or income.</li><li>It does not store user inputs or past results.</li><li>It does not require accounts or passwords.</li><li>It gives no financial, legal or health advice and promises no result.</li></ul></section>
+<section><h2>Price</h2><div class="tier"><span>Free core</span><b>Free</b></div><div class="tier"><span>Monthly</span><b>10.00 USD</b></div><div class="tier"><span>Yearly</span><b>100.00 USD</b></div><p class="note">Every tier is the same product and differs only in price; no tier adds features.</p>
+<form method="post" action="/store/dinner-decided/interest"><select name="tier" aria-label="Tier"><option value="Free core">Free core</option><option value="Monthly">Monthly</option><option value="Yearly">Yearly</option></select> <button type="submit">Register interest</button></form>
+<p class="note">Registering interest only records a click on this machine: nothing is charged and no card details are asked for.</p>
+</section>
+</main></body></html>
